@@ -33,6 +33,11 @@ RIGHT_PRONPT()
   printf "%*s" 240 "$(tput setaf 199)$(tput bold)$(CPU_USAGE)$(tput sgr0) $(tput setaf 2)$(DISK_USAGE) $(tput setaf 123)[TENKI:$(GET_WEATHER)]$(tput sgr0)"
 }
 
+GET_PWD()
+{
+	echo ${PWD##*/}
+}
+
 export PS1='$(free_mem) prompt > '
 GREEN="\[$(tput setaf 2)\]"
 PINK="\[$(tput setaf 199)\]"
@@ -48,4 +53,6 @@ STIM="\[$(tput sitm)\]" # 斜線開始
 RTIM="\[$(tput ritm)\]" # 斜線終了
 BCC_T="\[$(tput setb 7)\]"
 WHOAMI="⚡ "
-export PS1="\[\$(tput sc; RIGHT_PRONPT; tput rc)\]$WHOAMI${BCC_T}${BOLD}${YELLOW}@${RESET} ${STIM}${CYAN}[\$(FREE_MEM)]${RESET}${RTIM} ${ULINE}${ORANGE}192.168.15.19${RESET}${EULINE} ${BOLD}${BLUE}=>${RESET}"
+HST="$(hostname)"
+
+export PS1="\[\$(tput sc; RIGHT_PRONPT; tput rc)\]$WHOAMI${BCC_T}${BOLD}${YELLOW}@${RESET} ${STIM}${CYAN}[\$(FREE_MEM)]${RESET}${RTIM} ${ULINE}${ORANGE}${HST}${RESET}${EULINE} \$(GET_PWD) ${BOLD}${BLUE}=>${RESET}"
