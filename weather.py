@@ -34,7 +34,7 @@ with open('{home}/kawaii-term/async/weather.txt'.format(home=home),'r') as f:
     print(last.split('___').pop() )
 
 def async_update():
-  raw = os.popen('curl -s "http://api.openweathermap.org/data/2.5/weather?q=Tokoy,jp&appid=1e240e732347c23472274dc188cd39d6"').read()
+  raw = os.popen('curl -s "http://api.openweathermap.org/data/2.5/weather?q=Tokyo,jp&appid=1e240e732347c23472274dc188cd39d6"').read()
   obj = json.loads( raw )
   desc = obj['weather'][0]['description']
   save = '___'.join( map(str,[int(time.time()), desc] ) )
